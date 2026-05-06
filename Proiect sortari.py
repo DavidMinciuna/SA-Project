@@ -2,9 +2,8 @@ import time
 import random
 import sys
 sys.setrecursionlimit(10**6) #creste limita de la recursivitate (quick sort e obraznica)
-#==========SORTARE==========#
-
 def bubbleSort(l):
+    l= l.copy()
     n=len(l)
     for i in range(n):
         swapped=False
@@ -12,11 +11,12 @@ def bubbleSort(l):
             if l[j]>l[j+1]:
                 l[j],l[j+1]=l[j+1],l[j]
                 swapped=True
-        if not swapped: #nu mai are ce sa sorteze
+        if not swapped:
             break
     return l
 
 def selectionSort(l):
+    l= l.copy()
     n=len(l)
     for i in range(n-1):
         minim=i
@@ -27,6 +27,7 @@ def selectionSort(l):
     return l
 
 def insertionSort(l):
+    l= l.copy()
     n=len(l)
     if n <= 1:
         return l
@@ -37,11 +38,13 @@ def insertionSort(l):
             l[j+1]=l[j]
             j-=1
         l[j+1]=key   
+    return l
 
 def quickSort(l):
+    l= l.copy()
     if len(l)<=1:
         return l
-    pivot=l[0]
+    pivot = l[0]
     st=[]
     dr=[]
     for i in l[1:]:
@@ -51,7 +54,6 @@ def quickSort(l):
             dr.append(i)
     return quickSort(st)+[pivot]+quickSort(dr)
 
-#====Generare liste====#
 
 def lista_aleatoare(n, min_val=0, max_val=100000):
     l=[]
@@ -74,7 +76,7 @@ def lista_aproape_sortata(n):
         l[x],l[y]=l[y],l[x]
     return l
 
-#===Masurare Timp===#
+
 def timp_sortare(functie, l):
     start=time.time()
     functie(l)
